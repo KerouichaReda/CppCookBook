@@ -4,28 +4,38 @@
 #include<algorithm>
 #include"vectorTkit.h"
 
+static const int NUM_OBJECTS = 10;
+class MyClass
+{
+public:
+	MyClass();
+	~MyClass();
+
+private:
+
+};
+
+MyClass::MyClass()
+{
+}
+
+MyClass::~MyClass()
+{
+}
 int main(void)
 {
-	std::vector<std::string> vec(5);
-	std::string fool[] = { "My","way","or","the","highway" };
-		vec[0] = "Today";
-		vec[1] = "is ";
-		vec[2] = "a";
-		vec[3] = "new";
-		vec[4] = "day";
-
-		std::vector<std::string> vec2(vec);
-		vecPrint(vec2);
-
-		vec.at(0) = "Tommorow";
-
-		vec2.assign(vec.begin(), vec.end());
-		vecPrint(vec2);
-
-		std::vector<std::string>::iterator p;
-		p = std::find(vec.begin(), vec.end(), "end");
-		vec2.assign(vec.begin(), p);
-
+	std::vector<MyClass*> vec;
+	MyClass* p = NULL;
+	for (int i = 0; i < NUM_OBJECTS; i++)
+	{
+		p = new MyClass();
+		vec.push_back(p);
+	}
+	for (std::vector<MyClass*>::iterator pObj = vec.begin(); pObj != vec.end(); pObj++)
+	{
+		delete* pObj;
+	}
+	vec.clear();
 	getchar();
 	return 0;
 }
