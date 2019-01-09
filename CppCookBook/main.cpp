@@ -1,32 +1,23 @@
 #include<iostream>
-#include<map>
 #include<string>
+#include<unordered_set>
 #include"vectorTkit.h"
 
 
 int main(void)
 {
-	std::map < std::string, std::string > strMap;
-	strMap["Monday"] = "Montag";
-	strMap["Tuesday"] = "Dienstag";
-	strMap["Wednesday"] = "Mittwoch";
-	strMap["Thursday"] = "Donnerstag";
-	strMap["Friday"] = "Freitag";
-	strMap["Saturday"] = "Samstag";
-	strMap.insert(std::pair< std::string, std::string>("Sunday", "Sonntag"));
+	std::unordered_set<std::string> hsString;
+	std::string s = "Bravo";
+	hsString.insert(s);
+	
+	s = "Alpha";
+	hsString.insert(s);
 
-	for (std::map<std::string,std::string>::iterator p = strMap.begin(); p !=strMap.end(); p++)
+	s = "Charlie";
+	hsString.insert(s);
+	for (std::unordered_set<std::string>::const_iterator p = hsString.begin(); p !=hsString.end(); p++)
 	{
-		std::cout << "English: " << p->first << " German: " << p->second << std::endl;
-	}
-	std::cout << std::endl;
-
-	//strMap.erase("Thursday");
-	strMap.erase(strMap.find("Thursday"));
-
-	for (std::map<std::string, std::string>::iterator p = strMap.begin(); p != strMap.end(); p++)
-	{
-		std::cout << "English: " << p->first << " German: " << p->second << std::endl;
+		std::cout << *p << std::endl;
 	}
 	getchar();
 	return 0;
