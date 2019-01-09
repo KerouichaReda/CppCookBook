@@ -1,41 +1,58 @@
 #include<iostream>
-#include<vector>
+#include<list>
 #include<string>
 #include<algorithm>
+#include <functional>
 #include"vectorTkit.h"
 
-static const int NUM_OBJECTS = 10;
-class MyClass
+//printing function
+template<typename T>
+struct printer
 {
-public:
-	MyClass();
-	~MyClass();
-
-private:
-
+	void operator()(const T& s)
+	{
+		std::cout << s << std::endl;
+	}
 };
-
-MyClass::MyClass()
+bool inline even(int n)
 {
+	return(n % 2 == 0);
 }
+printer<std::string> strPrinter;
+printer<int> intPrinter;
 
-MyClass::~MyClass()
-{
-}
 int main(void)
 {
-	std::vector<MyClass*> vec;
-	MyClass* p = NULL;
-	for (int i = 0; i < NUM_OBJECTS; i++)
+	std::list < std::string > lstOne;
+	std::list < std::string > lstTwo;
+	lstOne.push_back("Green");
+	lstOne.push_back("Red");
+	lstOne.push_back("Bleu");
+
+	lstTwo.push_front("Cian");
+	lstTwo.push_front("Magenta");
+	lstTwo.push_front("Yellow");
+
+	std::for_each(lstOne.begin(), lstOne.end(), strPrinter);
+	
+	lstOne.sort();
+	lstTwo.sort();
+
+	lstOne.merge(lstTwo);
+	std::for_each(lstOne.begin(), lstOne.end(), strPrinter);
+
+	std::list<int> intLst;
+	for (int i = 0; i < 50; i++)
 	{
-		p = new MyClass();
-		vec.push_back(p);
+		intLst.push_back(i);
 	}
-	for (std::vector<MyClass*>::iterator pObj = vec.begin(); pObj != vec.end(); pObj++)
-	{
-		delete* pObj;
-	}
-	vec.clear();
+
+	std::for_each(intLst.begin(), intLst.end(), intPrinter);
+
+	intLst.remove_if(std::bind2nd(std::greater<int>(), 25));
+	std::for_each(intLst.begin(), intLst.end(), intPrinter);
+	intLst.remove_if(even);
+	std::for_each(intLst.begin(), intLst.end(), intPrinter);
 	getchar();
 	return 0;
 }
