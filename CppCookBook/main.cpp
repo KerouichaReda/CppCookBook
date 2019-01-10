@@ -1,21 +1,22 @@
 #include<iostream>
 #include<string>
-#include<unordered_set>
+#include<set>
 #include"vectorTkit.h"
 
 
 int main(void)
 {
-	std::unordered_set<std::string> hsString;
-	std::string s = "Bravo";
-	hsString.insert(s);
-	
-	s = "Alpha";
-	hsString.insert(s);
+	std::set<std::string> setStr;
+	std::string s = "Bill";
+	setStr.insert(s);
+	s = "Steve";
+	setStr.insert(s);
+	s = "Randy";
+	setStr.insert(s);
+	s = "Howard";
+	setStr.insert(s);
 
-	s = "Charlie";
-	hsString.insert(s);
-	for (std::unordered_set<std::string>::const_iterator p = hsString.begin(); p !=hsString.end(); p++)
+	for (std::set<std::string>::const_iterator p = setStr.begin(); p !=setStr.end(); p++)
 	{
 		std::cout << *p << std::endl;
 	}
