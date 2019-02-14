@@ -1,5 +1,6 @@
-#ifdef ANIMALS_HPP_INCLUDED
+#ifndef ANIMALS_HPP_INCLUDED
 #define ANIMALS_HPP_INCLUDED
+
 #include<ostream>
 #include<string>
 #include<stdexcept>
@@ -85,7 +86,7 @@ public:
 	{
 		dob_ = boost::gregorian::from_string(dob);
 	}
-	void setVeterinairian(const Contact& vet) { vet_ = vet; }
+	void setVeterinarian(const Contact& vet) { vet_ = vet; }
 	void setTrainer(const Contact& trainer) { trainer_ = trainer; }
 private:
 
