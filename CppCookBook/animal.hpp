@@ -16,8 +16,8 @@ public:
 	{
 		setPhone(phone);
 	}
-	std::string name()const { return name_;}
-	std::string phone() const { return phone_;}
+	std::string name()const { return name_; }
+	std::string phone() const { return phone_; }
 	void setPhone(const std::string& phone)
 	{
 		using namespace std;
@@ -25,7 +25,7 @@ public:
 		//Use Boost.Regex to verify that phone
 		//Has the form (ddd)ddd-dddd
 		static regex pattern("\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}");
-		if(!regex_match(phone,pattern))
+		if (!regex_match(phone, pattern))
 		{
 			throw runtime_error(string("bad phone number:") + phone);
 		}
@@ -67,7 +67,7 @@ public:
 		const std::string& species,
 		const std::string& dob,
 		const Contact& vet,
-		const Contact& trainer) :name_(name),species_(species),trainer_(trainer)
+		const Contact& trainer) :name_(name), species_(species), trainer_(trainer)
 	{
 		setDateOfBirth(dob);
 	};
